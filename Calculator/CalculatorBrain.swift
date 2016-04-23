@@ -8,23 +8,40 @@
 
 import Foundation
 
+func multiply(operandOne : Double , operandTwo : Double) -> (Double)
+{
+    return operandOne * operandTwo
+}
+
 class CalculatorBrain
 {
-    var accumulator = 0.0
+    private var pending : PendingBinaryOperationInfo?
+    private var accumulator = 0.0
     
     var operations : Dictionary<String , Operations> = [
         "π" : Operations.Constant(M_PI),
         "e" : Operations.Constant(M_E),
-        "cos" : Operations.UnaryOperation,
-        "√" : Operations.UnaryOperation
+        "cos" : Operations.UnaryOperation(cos),
+        "√" : Operations.UnaryOperation(sqrt),
+        "x" : Operations.BinaryOperation({$0 * $1}),
+        "-" : Operations.BinaryOperation({$0 - $1}),
+        "+" : Operations.BinaryOperation({$0 + $1}),
+        "÷" : Operations.BinaryOperation({$0 / $1}),
+        "=" : Operations.Equals
         ]
     
     enum Operations
     {
         case Constant(Double)
-        case UnaryOperation
-        case BinaryOperation
+        case UnaryOperation((Double) -> (Double))
+        case BinaryOperation((Double,Double) -> (Double))
         case Equals
+    }
+    
+    struct PendingBinaryOperationInfo
+    {
+        var binaryFunction: (Double,Double) -> (Double)
+        var firstOperand: Double
     }
     
     func setOperand( operand: Double )
@@ -38,11 +55,24 @@ class CalculatorBrain
         {
             switch operation
             {
-            case .Constant(let value) : accumulator = value
-            case .BinaryOperation : break
-            case .UnaryOperation : break
-            case .Equals : break
+                case .Constant(let value) :
+                    accumulator = value
+                case .UnaryOperation(let function) :
+                    accumulator = function(accumulator)
+                case .BinaryOperation(let function) :
+                    executePending()
+                    pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+                case .Equals : executePending()
             }
+        }
+    }
+    
+    func executePending()
+    {
+        if pending != nil
+        {
+            accumulator = pending!.binaryFunction(pending!.firstOperand , accumulator)
+            pending = nil
         }
     }
     
