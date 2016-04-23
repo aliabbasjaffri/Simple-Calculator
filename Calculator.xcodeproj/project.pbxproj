@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D22CABE1CCBD19000ED9DF0 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D22CABD1CCBD19000ED9DF0 /* CalculatorBrain.swift */; };
 		5D9E5A441CC9718600AA1973 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E5A431CC9718600AA1973 /* AppDelegate.swift */; };
 		5D9E5A461CC9718600AA1973 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E5A451CC9718600AA1973 /* ViewController.swift */; };
 		5D9E5A491CC9718600AA1973 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E5A471CC9718600AA1973 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D22CABD1CCBD19000ED9DF0 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		5D9E5A401CC9718600AA1973 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9E5A431CC9718600AA1973 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D9E5A451CC9718600AA1973 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				5D9E5A551CC972F000AA1973 /* Supporting Files */,
 				5D9E5A451CC9718600AA1973 /* ViewController.swift */,
 				5D9E5A471CC9718600AA1973 /* Main.storyboard */,
+				5D22CABD1CCBD19000ED9DF0 /* CalculatorBrain.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D22CABE1CCBD19000ED9DF0 /* CalculatorBrain.swift in Sources */,
 				5D9E5A461CC9718600AA1973 /* ViewController.swift in Sources */,
 				5D9E5A441CC9718600AA1973 /* AppDelegate.swift in Sources */,
 			);
