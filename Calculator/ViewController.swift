@@ -13,6 +13,7 @@ class ViewController: UIViewController
     @IBOutlet private weak var display: UILabel!
     
     private var userIsInTheMiddleOfTyping = false
+    private var userHasEnteredADecimalPoint = false
     
     private var brain = CalculatorBrain()
     
@@ -45,6 +46,8 @@ class ViewController: UIViewController
     
     @IBAction private func performOperation(sender: UIButton)
     {
+        userHasEnteredADecimalPoint = false
+        
         if userIsInTheMiddleOfTyping
         {
             brain.setOperand(displayValue)
@@ -55,6 +58,14 @@ class ViewController: UIViewController
         {
             brain.performOperation(mathematicalSymbol)
             displayValue = brain.result
+        }
+    }
+    @IBAction func touchDecimal(sender: UIButton)
+    {
+        if !userHasEnteredADecimalPoint
+        {
+            display.text! += "."
+            userHasEnteredADecimalPoint = true
         }
     }
     
