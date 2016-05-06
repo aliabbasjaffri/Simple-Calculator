@@ -113,6 +113,13 @@ class CalculatorBrain
         }
     }
     
+    func setOperand(variableName: String)
+    {
+        
+    }
+    
+    var variableValues: Dictionary<String, Double> = [:]
+    
     var result : Double{
         get
         {
