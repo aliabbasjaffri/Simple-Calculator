@@ -68,6 +68,14 @@ class ViewController: UIViewController
             userHasEnteredADecimalPoint = true
         }
     }
+    @IBAction func saveToMemory(sender: UIButton)
+    {
+        
+    }
     
+    @IBAction func getFromMemory(sender: UIButton)
+    {
+        
+    }
 }
 

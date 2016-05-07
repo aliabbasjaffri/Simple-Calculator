@@ -171,6 +171,9 @@
                                                         <color key="backgroundColor" red="0.87242310209999996" green="0.87242310209999996" blue="0.87242310209999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="→ M"/>
+                                                        <connections>
+                                                            <action selector="saveToMemory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jdc-IK-rOh"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gi-qc-ESp">
                                                         <rect key="frame" x="228" y="0.0" width="104" height="95"/>
@@ -218,6 +221,9 @@
                                                         <color key="backgroundColor" red="0.87242310209999996" green="0.87242310209999996" blue="0.87242310209999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="M"/>
+                                                        <connections>
+                                                            <action selector="getFromMemory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l58-y5-BZO"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY6-VV-DwS">
                                                         <rect key="frame" x="228" y="0.0" width="104" height="95"/>
