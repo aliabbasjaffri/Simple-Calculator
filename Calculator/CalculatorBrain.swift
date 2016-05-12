@@ -8,16 +8,24 @@
 
 import Foundation
 
-func multiply(operandOne : Double , operandTwo : Double) -> (Double)
-{
-    return operandOne * operandTwo
-}
-
 class CalculatorBrain
 {
     private var pending : PendingBinaryOperationInfo?
     private var accumulator = 0.0
+    private var memoryVariable = 0.0
     private var internalProgram = [AnyObject]()
+    
+    var memory : Double
+    {
+        set
+        {
+            memoryVariable = newValue
+        }
+        get
+        {
+            return memoryVariable
+        }
+    }
     
     typealias PropertyList = AnyObject
     var program : PropertyList

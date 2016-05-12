@@ -70,12 +70,12 @@ class ViewController: UIViewController
     }
     @IBAction func saveToMemory(sender: UIButton)
     {
-        
+        brain.memory = displayValue
     }
     
     @IBAction func getFromMemory(sender: UIButton)
     {
-        
+        displayValue = brain.memory
     }
 }
 
