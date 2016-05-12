@@ -73,9 +73,16 @@ class ViewController: UIViewController
         brain.memory = displayValue
     }
     
+    
     @IBAction func getFromMemory(sender: UIButton)
     {
         displayValue = brain.memory
+    }
+    
+    @IBAction func clearButton(sender: UIButton)
+    {
+        display.text! = ""
+        displayValue = 0.0
     }
 }
 
