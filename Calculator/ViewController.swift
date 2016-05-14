@@ -11,9 +11,12 @@ import UIKit
 class ViewController: UIViewController
 {
     @IBOutlet private weak var display: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     private var userIsInTheMiddleOfTyping = false
     private var userHasEnteredADecimalPoint = false
+    private var userHasPressedEqualsSign = false
+    private var userPressedMultipleOperationSymbols = false
     
     private var brain = CalculatorBrain()
     
@@ -32,14 +35,25 @@ class ViewController: UIViewController
     @IBAction private func touchDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
+        
+        userPressedMultipleOperationSymbols = false
+        
+        if userHasPressedEqualsSign
+        {
+            descriptionLabel.text = "0"
+            userHasPressedEqualsSign = false
+        }
+        
         if userIsInTheMiddleOfTyping
         {
             let textCurrentlyInDisplay = display.text!
             display.text! = textCurrentlyInDisplay + digit
+            descriptionLabel.text! += digit
         }
         else
         {
             display.text = digit
+            descriptionLabel.text! += " " + digit
         }
         userIsInTheMiddleOfTyping = true
     }
@@ -56,8 +70,22 @@ class ViewController: UIViewController
         
         if let mathematicalSymbol = sender.currentTitle
         {
-            brain.performOperation(mathematicalSymbol)
-            displayValue = brain.result
+            if !userPressedMultipleOperationSymbols
+            {
+                if mathematicalSymbol == "="
+                {
+                    userHasPressedEqualsSign = true
+                    descriptionLabel.text! += " ="
+                }
+                else
+                {
+                    descriptionLabel.text! += " " + mathematicalSymbol
+                }
+                
+                brain.performOperation(mathematicalSymbol)
+                displayValue = brain.result
+                userPressedMultipleOperationSymbols = true
+            }
         }
     }
     @IBAction func touchDecimal(sender: UIButton)
@@ -65,24 +93,29 @@ class ViewController: UIViewController
         if !userHasEnteredADecimalPoint
         {
             display.text! += "."
+            descriptionLabel.text! += "."
             userHasEnteredADecimalPoint = true
         }
     }
     @IBAction func saveToMemory(sender: UIButton)
     {
+        descriptionLabel.text! = "→M"
         brain.memory = displayValue
     }
     
     
     @IBAction func getFromMemory(sender: UIButton)
     {
+        descriptionLabel.text! = "M ="
         displayValue = brain.memory
     }
     
     @IBAction func clearButton(sender: UIButton)
     {
-        display.text! = ""
-        displayValue = 0.0
+        brain.clear()
+        displayValue = 0
+        display.text! = "0"
+        descriptionLabel.text! = "0"
     }
 }
 
