@@ -17,6 +17,7 @@ class ViewController: UIViewController
     private var userHasEnteredADecimalPoint = false
     private var userHasPressedEqualsSign = false
     private var userPressedMultipleOperationSymbols = false
+    private var isPartialResult = false
     
     private var brain = CalculatorBrain()
     
@@ -40,7 +41,7 @@ class ViewController: UIViewController
         
         if userHasPressedEqualsSign
         {
-            descriptionLabel.text = "0"
+            descriptionLabel.text = ""
             userHasPressedEqualsSign = false
         }
         
@@ -52,6 +53,11 @@ class ViewController: UIViewController
         }
         else
         {
+            if descriptionLabel.text! == "0"
+            {
+                descriptionLabel.text! = ""
+            }
+            
             display.text = digit
             descriptionLabel.text! += " " + digit
         }
@@ -68,9 +74,28 @@ class ViewController: UIViewController
             userIsInTheMiddleOfTyping = false
         }
         
+//        if userHasPressedEqualsSign && !userPressedMultipleOperationSymbols
+//        {
+//            var temp = descriptionLabel.text!
+//            temp = temp.stringByReplacingOccurrencesOfString("=", withString: "")
+//            descriptionLabel.text! = temp
+//            brain.setOperand(displayValue)
+//            userPressedMultipleOperationSymbols = false
+//            userHasPressedEqualsSign = false
+//        }
+        
         if let mathematicalSymbol = sender.currentTitle
         {
-            if !userPressedMultipleOperationSymbols
+            if userHasPressedEqualsSign && !userPressedMultipleOperationSymbols 
+            {
+                var temp = descriptionLabel.text!
+                temp = temp.stringByReplacingOccurrencesOfString("=", withString: "")
+                descriptionLabel.text! = temp
+                brain.setOperand(displayValue)
+                userPressedMultipleOperationSymbols = false
+                userHasPressedEqualsSign = false
+            }
+            else
             {
                 if mathematicalSymbol == "="
                 {
@@ -80,11 +105,11 @@ class ViewController: UIViewController
                 else
                 {
                     descriptionLabel.text! += " " + mathematicalSymbol
+                    userPressedMultipleOperationSymbols = true
                 }
                 
                 brain.performOperation(mathematicalSymbol)
                 displayValue = brain.result
-                userPressedMultipleOperationSymbols = true
             }
         }
     }
