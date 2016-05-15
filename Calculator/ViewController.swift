@@ -19,6 +19,9 @@ class ViewController: UIViewController
     private var userHasEnteredAMathematicalSymbol = false
     private var isPartialResult = false
     
+    private var memoryCall = false
+    private var vequalityOperatorPressed = false
+    
     private var lastEnteredDigit = 0.0
     
     private var brain = CalculatorBrain()
@@ -70,7 +73,14 @@ class ViewController: UIViewController
     {
         if userIsInTheMiddleOfTyping
         {
-            brain.setOperand(displayValue)
+            if memoryCall
+            {
+                brain.setOperand(brain.memory)   
+            }
+            else
+            {
+                brain.setOperand(displayValue)
+            }
             
             if userHasPressedEqualsSign
             {
@@ -97,12 +107,19 @@ class ViewController: UIViewController
             }
             else if mathematicalSymbol == "cos" || mathematicalSymbol == "e" || mathematicalSymbol == "√" || mathematicalSymbol == "π"
             {
-                descriptionLabel.text! = mathematicalSymbol + String(displayValue)
+                if memoryCall
+                {
+                    descriptionLabel.text! = mathematicalSymbol + String(brain.memory)
+                }
+                else{
+                    descriptionLabel.text! = mathematicalSymbol + String(displayValue)
+                }
             }
             
             brain.performOperation(mathematicalSymbol)
             displayValue = brain.result
         }
+        memoryCall = false
     }
     
     @IBAction func touchDecimal(sender: UIButton)
@@ -123,8 +140,15 @@ class ViewController: UIViewController
     
     @IBAction func getFromMemory(sender: UIButton)
     {
-        descriptionLabel.text! = "M ="
-        displayValue = brain.memory
+        if descriptionLabel.text! == "0"
+        {
+            descriptionLabel.text! = " M"
+        }
+        else
+        {
+            descriptionLabel.text! += " M"
+        }
+        memoryCall = true
     }
     
     @IBAction func clearButton(sender: UIButton)
