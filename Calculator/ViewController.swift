@@ -22,8 +22,6 @@ class ViewController: UIViewController
     private var memoryCall = false
     private var vequalityOperatorPressed = false
     
-    private var lastEnteredDigit = 0.0
-    
     private var brain = CalculatorBrain()
     
     private var displayValue : Double
@@ -41,7 +39,6 @@ class ViewController: UIViewController
     @IBAction private func touchDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
-        lastEnteredDigit = Double(digit)!
         
         if userHasPressedEqualsSign
         {
@@ -52,8 +49,16 @@ class ViewController: UIViewController
         if userIsInTheMiddleOfTyping
         {
             let textCurrentlyInDisplay = display.text!
-            display.text! = textCurrentlyInDisplay + digit
-            descriptionLabel.text! += digit
+            if textCurrentlyInDisplay != "0"
+            {
+                display.text! = textCurrentlyInDisplay + digit
+                descriptionLabel.text! += digit
+            }
+            else
+            {
+                display.text! = digit
+                descriptionLabel.text! = digit
+            }
         }
         else
         {
@@ -154,6 +159,31 @@ class ViewController: UIViewController
     @IBAction func clearButton(sender: UIButton)
     {
         clear()
+    }
+    
+    @IBAction func undoButton(sender: UIButton)
+    {
+        if userIsInTheMiddleOfTyping
+        {
+            var displayString = display.text!
+            displayString.removeAtIndex(displayString.endIndex.predecessor())
+            display.text! = displayString
+            
+            displayString = descriptionLabel.text!
+            displayString.removeAtIndex(displayString.endIndex.predecessor())
+            descriptionLabel.text! = displayString
+            
+            if display.text! == ""
+            {
+                display.text! = "0"
+                descriptionLabel.text! = "0"
+                
+            }
+        }
+        else
+        {
+            
+        }
     }
     
     func clear()
