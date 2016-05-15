@@ -16,8 +16,10 @@ class ViewController: UIViewController
     private var userIsInTheMiddleOfTyping = false
     private var userHasEnteredADecimalPoint = false
     private var userHasPressedEqualsSign = false
-    private var userPressedMultipleOperationSymbols = false
+    private var userHasEnteredAMathematicalSymbol = false
     private var isPartialResult = false
+    
+    private var lastEnteredDigit = 0.0
     
     private var brain = CalculatorBrain()
     
@@ -36,12 +38,11 @@ class ViewController: UIViewController
     @IBAction private func touchDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
-        
-        userPressedMultipleOperationSymbols = false
+        lastEnteredDigit = Double(digit)!
         
         if userHasPressedEqualsSign
         {
-            descriptionLabel.text = ""
+            clear()
             userHasPressedEqualsSign = false
         }
         
@@ -62,57 +63,48 @@ class ViewController: UIViewController
             descriptionLabel.text! += " " + digit
         }
         userIsInTheMiddleOfTyping = true
+        userHasEnteredAMathematicalSymbol = false
     }
     
     @IBAction private func performOperation(sender: UIButton)
     {
-        userHasEnteredADecimalPoint = false
-        
         if userIsInTheMiddleOfTyping
         {
             brain.setOperand(displayValue)
-            userIsInTheMiddleOfTyping = false
-        }
-        
-//        if userHasPressedEqualsSign && !userPressedMultipleOperationSymbols
-//        {
-//            var temp = descriptionLabel.text!
-//            temp = temp.stringByReplacingOccurrencesOfString("=", withString: "")
-//            descriptionLabel.text! = temp
-//            brain.setOperand(displayValue)
-//            userPressedMultipleOperationSymbols = false
-//            userHasPressedEqualsSign = false
-//        }
-        
-        if let mathematicalSymbol = sender.currentTitle
-        {
-            if userHasPressedEqualsSign && !userPressedMultipleOperationSymbols 
+            
+            if userHasPressedEqualsSign
             {
                 var temp = descriptionLabel.text!
                 temp = temp.stringByReplacingOccurrencesOfString("=", withString: "")
                 descriptionLabel.text! = temp
-                brain.setOperand(displayValue)
-                userPressedMultipleOperationSymbols = false
-                userHasPressedEqualsSign = false
             }
-            else
+            userIsInTheMiddleOfTyping = false
+        }
+        
+        if let mathematicalSymbol = sender.currentTitle
+        {
+            if mathematicalSymbol == "="
             {
-                if mathematicalSymbol == "="
-                {
-                    userHasPressedEqualsSign = true
-                    descriptionLabel.text! += " ="
-                }
-                else
-                {
-                    descriptionLabel.text! += " " + mathematicalSymbol
-                    userPressedMultipleOperationSymbols = true
-                }
-                
-                brain.performOperation(mathematicalSymbol)
-                displayValue = brain.result
+                userIsInTheMiddleOfTyping = true
+                userHasPressedEqualsSign = true
+                descriptionLabel.text! += " ="
             }
+            else if mathematicalSymbol == "+" || mathematicalSymbol == "-" || mathematicalSymbol == "x" || mathematicalSymbol == "÷"
+            {
+                descriptionLabel.text! += " " + mathematicalSymbol
+                userHasPressedEqualsSign = false
+                userHasEnteredAMathematicalSymbol = true
+            }
+            else if mathematicalSymbol == "cos" || mathematicalSymbol == "e" || mathematicalSymbol == "√" || mathematicalSymbol == "π"
+            {
+                descriptionLabel.text! = mathematicalSymbol + String(displayValue)
+            }
+            
+            brain.performOperation(mathematicalSymbol)
+            displayValue = brain.result
         }
     }
+    
     @IBAction func touchDecimal(sender: UIButton)
     {
         if !userHasEnteredADecimalPoint
@@ -122,12 +114,12 @@ class ViewController: UIViewController
             userHasEnteredADecimalPoint = true
         }
     }
+    
     @IBAction func saveToMemory(sender: UIButton)
     {
         descriptionLabel.text! = "→M"
         brain.memory = displayValue
     }
-    
     
     @IBAction func getFromMemory(sender: UIButton)
     {
@@ -136,6 +128,11 @@ class ViewController: UIViewController
     }
     
     @IBAction func clearButton(sender: UIButton)
+    {
+        clear()
+    }
+    
+    func clear()
     {
         brain.clear()
         displayValue = 0
