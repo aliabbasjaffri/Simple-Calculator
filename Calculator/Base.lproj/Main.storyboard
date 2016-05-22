@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="-80" y="1685"/>
         </scene>
-        <!--Calculator View Controller-->
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CalculatorViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -324,7 +324,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="oPd-i6-b2u" secondAttribute="leading" id="ofd-yp-lFk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="NkM-WC-4er"/>
+                    <navigationItem key="navigationItem" title="Calculator" id="NkM-WC-4er"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="2DT-qV-Vvr" id="WfG-YI-9wb"/>
                         <outlet property="display" destination="r0a-l8-nBd" id="Jth-h2-qDg"/>
@@ -334,7 +334,7 @@
             </objects>
             <point key="canvasLocation" x="2621" y="1685"/>
         </scene>
-        <!--Graph View Controller-->
+        <!--Graph of -->
         <scene sceneID="B9W-DC-5mq">
             <objects>
                 <viewController id="hNM-BS-tAU" customClass="GraphViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -359,7 +359,7 @@
                             <constraint firstItem="B85-O7-Hmc" firstAttribute="top" secondItem="LsU-9u-yNW" secondAttribute="bottom" id="rsR-gd-hDd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="QVW-R6-t7m"/>
+                    <navigationItem key="navigationItem" title="Graph of " id="QVW-R6-t7m"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6a-zD-mE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
