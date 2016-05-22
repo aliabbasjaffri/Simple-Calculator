@@ -16,7 +16,7 @@ class AxesDrawer
     
     var color = UIColor.blueColor()
     var minimumPointsPerHashmark: CGFloat = 40
-    var contentScaleFactor: CGFloat = 1 // set this from UIView's contentScaleFactor to position axes with maximum accuracy
+    var contentScaleFactor: CGFloat = 1.0 // set this from UIView's contentScaleFactor to position axes with maximum accuracy
     
     convenience init(color: UIColor, contentScaleFactor: CGFloat) {
         self.init()
