@@ -8,17 +8,28 @@
 
 import UIKit
 
+protocol GraphViewDataSource: class {
+    func pointsForGraphView(sender: GraphView) -> [CGPoint]
+}
+
 @IBDesignable
 class GraphView: UIView
 {
+    @IBInspectable
     var lineWidth : CGFloat = 1.0 { didSet{setNeedsDisplay()} }
+    
+    @IBInspectable
     var lineColor : UIColor = UIColor.blueColor() { didSet{setNeedsDisplay()} }
+    
+    @IBInspectable
     var scale: CGFloat = 50.0 {
         didSet {
             updateRange()
             setNeedsDisplay()
         }
     }
+    
+    weak var dataSource: GraphViewDataSource?
     
     private var rangeMinimumX : CGFloat = -50.0
     private var rangeMaximumX : CGFloat = 50.0
@@ -27,6 +38,8 @@ class GraphView: UIView
     private var rangeMaximumY : CGFloat = 25.0
     
     private var increment : CGFloat = 1.0
+    
+    private var screenCenter : CGPoint {return CGPoint(x: bounds.midX , y: bounds.midY)}
     
     private var viewCenter: CGPoint {
         return convertPoint(center, fromView: superview)
@@ -55,23 +68,31 @@ class GraphView: UIView
         
     }
     
-    
     override func drawRect(rect: CGRect)
     {
-        let axesDrawer = AxesDrawer(
-            color: UIColor.blueColor() ,
-            contentScaleFactor: contentScaleFactor
-        )
+        let axesDrawer = AxesDrawer(color: lineColor ,contentScaleFactor: contentScaleFactor)
+        axesOrigin = screenCenter
+        axesDrawer.drawAxesInRect( viewBounds, origin: axesOrigin, pointsPerUnit: scale )
         
-        axesOrigin.x = center.x
-        axesOrigin.y = center.y
+        let path = UIBezierPath()
+        path.lineWidth = lineWidth
+        lineColor.set()
         
-        axesDrawer.drawAxesInRect(
-            viewBounds,
-            origin: axesOrigin,
-            pointsPerUnit: scale
-        )
+        if var points = dataSource?.pointsForGraphView(self)
+        {
+            if points.count > 1
+            {
+                path.moveToPoint(points.removeAtIndex(0))
+                
+                for point in points
+                {
+                    path.moveToPoint(point)
+                }
+            }
+        }
+        path.stroke()
     }
+    
     
 
 }

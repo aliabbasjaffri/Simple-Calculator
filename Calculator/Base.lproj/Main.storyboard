@@ -349,15 +349,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B85-O7-Hmc" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="point" keyPath="screenCenter">
+                                        <point key="value" x="0.0" y="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="B85-O7-Hmc" secondAttribute="trailing" id="Dtw-EX-tK2"/>
                             <constraint firstItem="B85-O7-Hmc" firstAttribute="leading" secondItem="jQs-jf-tHc" secondAttribute="leading" id="V6O-zJ-n31"/>
+                            <constraint firstItem="B85-O7-Hmc" firstAttribute="leading" secondItem="jQs-jf-tHc" secondAttribute="leading" id="WEQ-vi-AFT"/>
+                            <constraint firstAttribute="trailing" secondItem="B85-O7-Hmc" secondAttribute="trailing" id="ZGZ-8e-Cpb"/>
                             <constraint firstItem="B85-O7-Hmc" firstAttribute="bottom" secondItem="Zqr-zl-2N2" secondAttribute="top" id="bIi-zK-g8X"/>
+                            <constraint firstItem="B85-O7-Hmc" firstAttribute="bottom" secondItem="Zqr-zl-2N2" secondAttribute="top" id="dXN-K2-BvG"/>
+                            <constraint firstItem="B85-O7-Hmc" firstAttribute="top" secondItem="LsU-9u-yNW" secondAttribute="bottom" id="fHf-S1-CBH"/>
                             <constraint firstItem="B85-O7-Hmc" firstAttribute="top" secondItem="LsU-9u-yNW" secondAttribute="bottom" id="rsR-gd-hDd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dtw-EX-tK2"/>
+                                <exclude reference="V6O-zJ-n31"/>
+                                <exclude reference="bIi-zK-g8X"/>
+                                <exclude reference="rsR-gd-hDd"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Graph of " id="QVW-R6-t7m"/>
                 </viewController>
