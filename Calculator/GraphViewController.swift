@@ -10,9 +10,19 @@ import UIKit
 
 class GraphViewController: UIViewController
 {
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-    
+    @IBOutlet weak var graphView: GraphView!{
+        didSet
+        {
+            let tapGesture = UITapGestureRecognizer(target: graphView, action: #selector(GraphView.tapGesture))
+            tapGesture.numberOfTapsRequired = 2
+            graphView.addGestureRecognizer(tapGesture)
+            
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(GraphView.panGesture))
+            graphView.addGestureRecognizer(panGesture)
+            
+            let pinchGesture = UIPinchGestureRecognizer(target: graphView, action: #selector(GraphView.pinchGesture))
+            graphView.addGestureRecognizer(pinchGesture)
+        }
     }
+    
 }

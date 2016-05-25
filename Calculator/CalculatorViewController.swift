@@ -10,6 +10,32 @@ import UIKit
 
 class CalculatorViewController: UIViewController
 {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navigationController = destination as? UINavigationController
+        {
+            destination = navigationController.visibleViewController!
+        }
+        
+        if let identifier = segue.identifier
+        {
+            switch identifier
+            {
+                case "showGraph":
+                    if let graphViewController = destination as? GraphViewController
+                    {
+                        //graphViewController.program
+                    }
+                
+                default: break
+            }
+        }
+        
+    }
+    
     @IBOutlet private weak var display: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     

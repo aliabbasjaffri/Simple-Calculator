@@ -64,10 +64,10 @@
 			children = (
 				5D9E5A551CC972F000AA1973 /* Supporting Files */,
 				5D9A5A4D1CF1ECF1008C3130 /* AxesDrawer.swift */,
-				5D9E5A451CC9718600AA1973 /* CalculatorViewController.swift */,
-				5D9E5A471CC9718600AA1973 /* Main.storyboard */,
 				5D22CABD1CCBD19000ED9DF0 /* CalculatorBrain.swift */,
+				5D9E5A451CC9718600AA1973 /* CalculatorViewController.swift */,
 				5D9A5A4F1CF20D08008C3130 /* GraphViewController.swift */,
+				5D9E5A471CC9718600AA1973 /* Main.storyboard */,
 				5D3B17A11CF386A400BFDDCA /* GraphView.swift */,
 			);
 			path = Calculator;

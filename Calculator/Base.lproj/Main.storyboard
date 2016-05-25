@@ -270,7 +270,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="G"/>
                                                         <connections>
-                                                            <segue destination="EiB-J3-UqM" kind="show" id="WpD-P6-8vF"/>
+                                                            <segue destination="EiB-J3-UqM" kind="show" identifier="showGraph" id="WpD-P6-8vF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNC-Id-vL2">
@@ -377,6 +377,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Graph of " id="QVW-R6-t7m"/>
+                    <connections>
+                        <outlet property="graphView" destination="B85-O7-Hmc" id="vjy-nw-oj4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6a-zD-mE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -93,7 +93,7 @@ class GraphView: UIView
         path.stroke()
     }
     
-    func tapGesture(gesture : UITapGestureRecognizer)
+    internal func tapGesture(gesture : UITapGestureRecognizer)
     {
         if gesture.state == .Ended
         {
@@ -101,7 +101,7 @@ class GraphView: UIView
         }
     }
     
-    func pinchGesture(gesture : UIPinchGestureRecognizer)
+    internal func pinchGesture(gesture : UIPinchGestureRecognizer)
     {
         if gesture.state == .Changed
         {
@@ -110,7 +110,7 @@ class GraphView: UIView
         }
     }
     
-    func panGesture(gesture : UIPanGestureRecognizer)
+    internal func panGesture(gesture : UIPanGestureRecognizer)
     {
         switch gesture.state
         {
