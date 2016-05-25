@@ -93,6 +93,37 @@ class GraphView: UIView
         path.stroke()
     }
     
+    func tapGesture(gesture : UITapGestureRecognizer)
+    {
+        if gesture.state == .Ended
+        {
+            axesOrigin = gesture.locationInView(self)
+        }
+    }
     
+    func pinchGesture(gesture : UIPinchGestureRecognizer)
+    {
+        if gesture.state == .Changed
+        {
+            scale *= gesture.scale
+            gesture.scale = 1.0
+        }
+    }
+    
+    func panGesture(gesture : UIPanGestureRecognizer)
+    {
+        switch gesture.state
+        {
+            case .Changed , .Ended:
+                let translation = gesture.translationInView(self)
+                if translation.x != 0 || translation.y != 0
+                {
+                    axesOrigin.x += translation.x
+                    axesOrigin.y += translation.y
+                    gesture.setTranslation(CGPointZero, inView: self)
+                }
+            default: break
+        }
+    }
 
 }
