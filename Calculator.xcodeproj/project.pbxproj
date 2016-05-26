@@ -16,6 +16,7 @@
 		5D9E5A491CC9718600AA1973 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E5A471CC9718600AA1973 /* Main.storyboard */; };
 		5D9E5A4B1CC9718600AA1973 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E5A4A1CC9718600AA1973 /* Assets.xcassets */; };
 		5D9E5A4E1CC9718600AA1973 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E5A4C1CC9718600AA1973 /* LaunchScreen.storyboard */; };
+		5DFB94CA1CF7635B00B43B1C /* extensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFB94C91CF7635B00B43B1C /* extensionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		5D9E5A4A1CC9718600AA1973 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D9E5A4D1CC9718600AA1973 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D9E5A4F1CC9718600AA1973 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DFB94C91CF7635B00B43B1C /* extensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				5D9A5A4F1CF20D08008C3130 /* GraphViewController.swift */,
 				5D9E5A471CC9718600AA1973 /* Main.storyboard */,
 				5D3B17A11CF386A400BFDDCA /* GraphView.swift */,
+				5DFB94C91CF7635B00B43B1C /* extensionViewController.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			files = (
 				5D22CABE1CCBD19000ED9DF0 /* CalculatorBrain.swift in Sources */,
 				5D9A5A501CF20D08008C3130 /* GraphViewController.swift in Sources */,
+				5DFB94CA1CF7635B00B43B1C /* extensionViewController.swift in Sources */,
 				5D9A5A4E1CF1ECF1008C3130 /* AxesDrawer.swift in Sources */,
 				5D9E5A461CC9718600AA1973 /* CalculatorViewController.swift in Sources */,
 				5D9E5A441CC9718600AA1973 /* AppDelegate.swift in Sources */,

@@ -10,22 +10,16 @@ import UIKit
 
 class CalculatorViewController: UIViewController
 {
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        var destination = segue.destinationViewController as UIViewController
-        
-        if let navigationController = destination as? UINavigationController
-        {
-            destination = navigationController.visibleViewController!
-        }
+        let destination = segue.destinationViewController.contentViewController as UIViewController
         
         if let identifier = segue.identifier
         {
             switch identifier
             {
                 case "showGraph":
-                    if let graphViewController = destination as? GraphViewController
+                    if destination is GraphViewController
                     {
                         //graphViewController.program
                     }
@@ -219,5 +213,6 @@ class CalculatorViewController: UIViewController
         display.text! = "0"
         descriptionLabel.text! = "0"
     }
+    
+    
 }
-
